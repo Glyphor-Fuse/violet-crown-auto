@@ -1,1 +1,97 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --obsidian: #050506;
+  --aluminum: #e2e8f0;
+  --ultraviolet: #7c3aed;
+  --uv-glow: rgba(124, 58, 237, 0.4);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#050506] text-slate-300 antialiased overflow-x-hidden;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv03";
+  }
+
+  ::selection {
+    @apply bg-violet-600/30 text-white;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 md:px-12;
+  }
+
+  .text-aluminum {
+    @apply text-slate-200;
+  }
+
+  .heading-xl {
+    @apply text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85] text-white;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-5xl font-bold uppercase tracking-tight text-white;
+  }
+
+  .nav-link {
+    @apply text-sm uppercase tracking-[0.2em] font-medium text-slate-400 hover:text-white transition-colors duration-300;
+  }
+
+  .glass-card {
+    @apply bg-white/[0.02] border border-white/10 backdrop-blur-sm;
+  }
+
+  .btn-uv {
+    @apply relative inline-flex items-center justify-center px-8 py-4 text-xs font-bold tracking-[0.3em] uppercase transition-all duration-500 border border-violet-500/50 hover:border-violet-400 hover:bg-violet-600/10 hover:shadow-[0_0_30px_rgba(124,58,237,0.2)];
+  }
+
+  .uv-flare {
+    @apply absolute pointer-events-none blur-[120px] rounded-full bg-violet-600/20 opacity-50;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050506;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f1f23;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2d2d35;
+}
+
+/* Noise overlay for the raw texture feel */
+.noise-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: 0.015;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  color: transparent;
+}
+
+.mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
